@@ -1,0 +1,53 @@
+// bower:scss
+// endbower
+
+
+/*---------- mixins ----------*/
+@mixin bp-small{
+  @media only screen and (max-width: 600px){
+    @content;
+  }
+}
+
+@mixin bp-medium{
+  @media only screen and (min-width: 600px){
+    @content;
+  }
+}
+
+/*---------- vars ----------*/
+$main-font: arial, sans-serif;
+$capital: uppercase;
+$nav-bg: #fff;
+$nav-link: #595959;
+$text-color: #000;
+$hover-text: #0040ff;
+$card-background:     #fff;
+$card-border-color:   #909090;
+
+
+/*---------- base styles ----------*/
+body { font-size:62.5%; }
+h1 { font-size: 5em; } /* =24px */
+p  { font-size: 0.875em; } /* =14px */
+li { font-size: 1.4em; } /* =14px? */
+li li, li p /* etc */ { font-size: 1em; }
+a {font-size: .9em;}
+          
+
+body {
+  font-family: $main-font;
+  padding: 0;
+  margin: 0;
+}
+
+p {
+  color: $text-color;
+}
+
+*,*:before,*:after{
+  box-sizing: border-box;
+}
+
+
+

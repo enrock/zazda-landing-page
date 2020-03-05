@@ -1,0 +1,387 @@
+// bower:scss
+// endbower
+
+/*---------- layout styles ----------*/
+
+@mixin bp-small{
+  @media only screen and (max-width: 600px){
+    @content;
+  }
+}
+
+@mixin bp-medium{
+  @media only screen and (min-width: 600px){
+    @content;
+  }
+}
+
+
+@mixin box-shadow($top, $left, $blur, $color, $inset:"") {
+  -webkit-box-shadow:$top $left $blur $color #{$inset};
+  -moz-box-shadow:$top $left $blur $color #{$inset};
+  box-shadow:$top $left $blur $color #{$inset};
+  }
+
+@mixin border-radius($radius) {
+  -webkit-border-radius: $radius;
+  border-radius: $radius;
+  background-clip: padding-box;  /* stops bg color from leaking outside the border: */
+}
+
+/* flex styles */
+/* for browsers larger than 768px */
+@media screen and (min-width: 768px) {
+  .nav-group {
+    display: flex;
+    justify-content: flex-end;
+  }
+  
+  nav li {
+    //flex: 1 1 0;
+  }
+}
+
+
+/*---------- vars ----------*/
+$main-font: arial, sans-serif;
+$capital: uppercase;
+$nav-bg: #fff;
+$nav-link: #595959;
+$text-color: #000;
+$hover-text: #0040ff;
+$card-background: #fff;
+$card-border-color: #909090;
+$radius: 2em;
+
+.wrapper{
+  position: relative;
+  width: 100%;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0;
+  border: 1px solid #909090;
+  @include bp-small{
+    padding: 0px 0px;
+  }  
+}
+
+/*
+Nav styles
+ */
+
+  .nav{
+  padding: 35px 30px 35px 30px;
+  font-family: $main-font;
+  background-color: #ffffff;
+  border-bottom: 3px solid $text-color;
+  width: 100%;
+  margin: 5px 0 0;
+  text-align: right;
+
+      .nav__group{
+      width: 67%;
+      float: right;
+      display: block;
+      list-style: none;
+      padding: 10px 0 0 0;
+      margin: 0;
+      @include bp-small{
+      display: none;
+      }
+
+        &__item{
+          display: inline-block;
+          margin: 0 5px;
+
+          a {
+
+          display: block;
+          padding: 5px;
+          color: #595959;
+          text-decoration: none;
+          text-transform: $capital;
+          font-weight: 300;
+            &:hover{
+              color: $hover-text;         
+            }
+            &.active{
+              color: $hover-text;
+            }
+          }    
+        }
+      }
+    }
+
+  .nav__logo{
+    text-align: left;
+    font-weight: 700;
+    margin: 0;
+    width: 30%;
+    font-size: 36px;       
+    color: $text-color;
+    }
+
+
+/*
+heading styles
+ */
+
+.heading{
+  background-color: #ebebeb;
+  max-width: 100%;
+  padding-top: 90px;
+  padding-left: 10%;
+  padding-bottom: 250px;
+  border-bottom: 2px solid #909090;
+  text-align: left;
+  @include bp-small{
+  padding-bottom: 130px;
+  padding-left: 0;
+  padding-right: 0;
+  }
+  &__title{
+    max-width: 56%;
+    font-size: 5em;
+    line-height: 56px;
+    margin: 0 0 30px;
+    color: $text-color;
+    @include bp-small{
+    margin: 0 auto 30px;
+    max-width: 90%;
+    text-align: center;
+    }
+
+	  }
+	  &__subtitle{
+	  font-size: 2.9em;
+	  line-height: 38px;
+	  color: $text-color;
+	  margin: 0 ;
+	  @include bp-small{
+	  margin: 0px auto 0;
+	  max-width: 90%;
+	  text-align: center;
+	  }
+  }
+}
+
+
+/*
+cards styles
+ */
+
+.cards {
+display: flex;
+flex-wrap: wrap;
+list-style: none;
+margin: -120px 20px 50px 20px;
+padding: 0; 
+}
+
+  .cards_item {
+  display: flex;
+  .no-flexbox & { float: left; }
+  margin-top: 0;
+  padding: 10px;
+
+    // > 960px, 3 items/row
+    @media screen and (min-width: 60em) {
+    width: 33.3333%;
+      .no-flexbox &:nth-child(3n+1) { clear: both; }
+      }
+
+    .card {
+    display: flex;
+    flex-direction: column;
+    background-color: #fff;
+  	@include box-shadow(1px, 1px, 5px, 1px, rgba(0,0,0,0.75));
+  	@include border-radius (5px);   
+  
+
+      .card__image {
+        img {
+        width: 100%;
+        padding: 10px 10px 0 10px;
+
+        }
+      }
+
+      .card__content {
+      display: flex;
+      flex: 1 0 auto;
+      flex-direction: column; 
+      margin-top: 0;
+      padding: 1.5em 1.2em 1em 1.2em;
+      line-height: 20px;
+        .card_heading {
+        font-weight: 500;
+        font-size: 1.9em;
+        margin: 0;
+        }
+        .card-date {
+        padding: 8px 0 0;
+        }
+
+        p {
+        flex: 1 0 auto;
+        }  
+      }
+    }
+  }
+
+/*
+cards end
+ */
+
+
+/*
+razda template info
+ */
+
+
+.razda-template {
+   display: -webkit-flex;
+   display: flex;
+   -webkit-flex-direction: column;
+   flex-direction: column;
+  margin: 0 20px;
+
+  .razda__box {
+  width:50%;
+	background-color: none;
+	order: 1;
+  	@include border-radius (6px);
+  	@include box-shadow(1px, 1px, 10px, 1px, rgba(0,0,0,0.75));
+    @include bp-small{
+    width: 100%;
+    }
+    .razda-box__img {
+    img {
+    width: 100%;
+    padding: 10px;
+    }
+  }
+}
+
+
+  .razda__info {
+  width:50%;
+  font-size: 20px;
+  padding: 0 40px 0 40px;
+  order: 2;
+    p {
+    font-size: 16px;
+    font-weight: 800;
+    line-height: 24px;
+    padding: 0 20px 0 20px;
+    margin-bottom: 80px;
+    }
+    @include bp-small{
+    padding: 0 10px 0 10px;
+    width: 100%;
+    flex: 1;
+    }
+
+    .heading__subtitle {
+    width: 100%;
+    font-size: 1.2em;
+    line-height: 24px;
+    margin: 0 0 28px;
+    color: $text-color;
+    padding: 0 0px 0 20px;
+      @include bp-small{
+      padding:0px;
+      margin: 0 auto 0;
+      max-width: 90%;
+      text-align: center;
+      }
+
+    }
+    .heading__title {
+    max-width: 90%;
+    font-size: 1.4em;
+    line-height: 32px;
+    color: $text-color;
+    margin: 0 0 12px 0; 
+    padding: 0 10px 0 20px;
+      @include bp-small{
+      padding:0px;
+       margin: 50px auto 12px; 
+      max-width: 90%;
+      text-align: center;
+      }
+    }
+  }
+}
+
+@media screen and (min-width: 600px) {
+  .razda-template {
+    flex-direction: row;
+  }
+}
+
+/*
+button
+ */
+
+.button {
+font-size:14px;
+padding:14px 20px;
+text-decoration:none;
+text-transform: $capital;
+background-color: $text-color;
+color:#ffffff;
+display:block;
+font-weight:normal;
+	@include border-radius (6px);
+  @include bp-small{
+  margin: auto;
+  }
+
+  &--hello {
+
+  }
+  &--razda {
+  margin-left: 20px;
+    @include bp-small{
+    margin: auto;
+    }
+  }
+}
+
+.button:hover {
+  background-color: #5b5950;
+}
+
+
+/*
+footer styles
+ */
+
+
+.main-footer{
+  width: 100%;
+  border-top: 2px solid $text-color;
+  padding: 10px 0;
+  padding: 10px 0px 50px 0px;
+  margin-top: 80px;
+  text-transform: $capital;
+  font-size: 1em;
+  .main-footer__phone {
+    width: 50%;
+    float: left;
+    padding-left: 10px;
+  }
+  .main-footer__copyright {
+    width: 50%;
+    float: right;
+    text-align: right; 
+    padding-right: 10px;
+  }
+}
+
+
+
+
+
+
